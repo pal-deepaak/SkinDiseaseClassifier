@@ -1,190 +1,122 @@
+<div align="center">
+
 # 🩺 Skin Disease Classification using Deep Learning
 
-A Deep Learning-based web application that classifies dermoscopic skin lesion images into seven different skin disease categories using a fine-tuned **ResNet50** model. The project includes the complete deep learning pipeline—from data preprocessing and model experimentation to deployment with **Streamlit** for real-time inference.
+### AI-Powered Skin Disease Classification using Fine-Tuned ResNet50
+
+[![Python](https://img.shields.io/badge/Python-3.12-blue?style=for-the-badge\&logo=python)](https://www.python.org/)
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-FF6F00?style=for-the-badge\&logo=tensorflow)](https://www.tensorflow.org/)
+[![Keras](https://img.shields.io/badge/Keras-Deep%20Learning-D00000?style=for-the-badge\&logo=keras)](https://keras.io/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-Web%20Application-FF4B4B?style=for-the-badge\&logo=streamlit)](https://streamlit.io/)
+[![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-5C3EE8?style=for-the-badge\&logo=opencv)](https://opencv.org/)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+
+**A Deep Learning based Skin Disease Classification System built using Transfer Learning with ResNet50 and deployed using Streamlit.**
+
+</div>
 
 ---
 
-# 📖 Project Overview
+# 📖 Table of Contents
 
-Early detection of skin diseases can significantly improve treatment outcomes. However, manual diagnosis from dermoscopic images requires clinical expertise and can be time-consuming.
-
-This project aims to assist in skin disease classification by leveraging **Transfer Learning** with **ResNet50**. Multiple deep learning models were trained and evaluated on the **HAM10000** dataset before selecting the final deployment model based on overall performance.
-
-The application allows users to upload a skin lesion image and receive:
-
-* Predicted skin disease
-* Prediction confidence
-* Top-3 predicted classes
-* Probability distribution across all classes
-* Brief description of the predicted disease
-
-The complete system has been deployed as a user-friendly **Streamlit** web application.
+* [Project Overview](#-project-overview)
+* [Project Highlights](#-project-highlights)
+* [Project Pipeline](#-project-pipeline)
+* [Dataset](#-dataset)
+* [Technology Stack](#-technology-stack)
+* [Project Objective](#-project-objective)
 
 ---
 
-# ✨ Features
+# 📌 Project Overview
 
-* 📷 Upload dermoscopic skin lesion images
-* 🤖 Automatic disease prediction using Deep Learning
-* 🎯 Confidence score for every prediction
-* 🏆 Top-3 predicted disease classes
-* 📊 Prediction probability visualization
-* 📋 Disease description
-* 🌐 Interactive Streamlit web interface
-* ⚠️ Medical disclaimer for responsible usage
+Skin diseases are among the most common health conditions worldwide. Accurate diagnosis often requires experienced dermatologists and specialized equipment, making early detection difficult for many people.
+
+This project presents an **AI-powered Skin Disease Classification System** that automatically classifies dermoscopic skin lesion images into one of seven disease categories using **Deep Learning**.
+
+Instead of relying on a single pretrained model, multiple architectures were trained, evaluated, and compared before selecting the final deployment model. After extensive experimentation, **Fine-Tuned ResNet50** was selected because it provided the best balance between accuracy, stability, and generalization.
+
+
+
+---
+
+# ✨ Project Highlights
+
+✔️ End-to-End Deep Learning Project
+
+✔️ Medical Image Classification
+
+✔️ Transfer Learning
+
+✔️ Fine-Tuning
+
+✔️ Model Comparison
+
+✔️ Real-Time Inference
+
+✔️ Streamlit 
+
+✔️ Probability Visualization
+
+✔️ Top-3 Predictions
+
+✔️ Disease Description
+
+✔️ Modular Project Structure
+
+✔️ Production-Ready Inference Pipeline
 
 ---
 
 # 🏗️ Project Pipeline
 
 ```text
-                 HAM10000 Dataset
+                      HAM10000 Dataset
+                              │
+                              ▼
+                     Exploratory Data Analysis
+                              │
+                              ▼
+                      Data Preprocessing
+                              │
+                              ▼
+                    Image Normalization
+                              │
+                              ▼
+                 Deep Learning Model Training
+         ┌──────────────┬──────────────┬──────────────┐
+         │              │              │              │
+         ▼              ▼              ▼              ▼
+    Custom CNN    EfficientNetB0    ResNet50        DesNet121
+         │              │              │              │
+         └──────────────┴──────────────┘──────────────┘
                         │
                         ▼
-              Data Preprocessing
+                 Model Evaluation
                         │
                         ▼
-             Image Normalization
+               Best Model Selection
                         │
                         ▼
-          Deep Learning Model Training
-        ┌──────────┬──────────────┬──────────────┐
-        │          │              │              │
-        ▼          ▼              ▼
-   Custom CNN  EfficientNetB0  ResNet50
-        │          │              │
-        └──────────┴──────────────┘
-                    │
-                    ▼
-            Model Evaluation
-                    │
-                    ▼
-         Best Model Selection
-                    │
-                    ▼
-          Streamlit Deployment
+                Inference Pipeline
+                        │
+                        ▼
+            Streamlit Web Application
 ```
 
 ---
 
-# 🧠 Model Development
-
-Rather than directly selecting a pretrained model, multiple deep learning architectures were trained and evaluated to identify the most suitable model for skin disease classification.
-
-The development process followed a progressive experimentation approach:
-
-### Phase 1 — Baseline Model
-
-A custom Convolutional Neural Network (CNN) was developed from scratch to establish a performance baseline.
-
-The purpose of this model was to understand the dataset characteristics and evaluate how a manually designed CNN performs without transfer learning.
-
----
-
-### Phase 2 — Transfer Learning with EfficientNetB0
-
-EfficientNetB0 was then used as a pretrained feature extractor.
-
-The feature extraction approach significantly improved the classification performance compared to the baseline CNN.
-
-An additional fine-tuning experiment was performed by unfreezing part of the network. However, this configuration resulted in degraded validation performance and reduced generalization. Therefore, the fine-tuned EfficientNet model was not selected for deployment.
-
----
-
-### Phase 3 — Transfer Learning with ResNet50
-
-Finally, ResNet50 was trained using transfer learning and later fine-tuned.
-
-After evaluating all trained models, ResNet50 demonstrated the best balance between classification accuracy, validation performance, and overall stability.
-
-For this reason, the fine-tuned ResNet50 model was selected as the final deployment model.
-
----
-
-# 📊 Model Comparison
-
-| Model          | Training Strategy                   |                    Test Accuracy | Decision         |
-| -------------- | ----------------------------------- | -------------------------------: | ---------------- |
-| Custom CNN     | Built From Scratch                  |                           60.55% | Baseline Model   |
-| EfficientNetB0 | Feature Extraction                  |                           72.06% | Good Performance |
-| EfficientNetB0 | Fine-Tuning                         | Validation performance decreased | Rejected         |
-| **ResNet50**   | **Transfer Learning + Fine-Tuning** |       **Final Deployment Model** | ✅ Selected       |
-
----
-
-# 🎯 Why ResNet50?
-
-Although EfficientNetB0 achieved competitive performance during feature extraction, the fine-tuned ResNet50 model provided better overall stability during experimentation.
-
-The final model was selected based on multiple considerations rather than a single accuracy metric:
-
-* Better overall generalization
-* Stable validation performance
-* Reliable prediction behaviour
-* Better suitability for deployment
-
-Instead of choosing the model with only the highest training accuracy, the final decision prioritized real-world inference performance and deployment stability.
-
----
-
-# 📈 Model Performance
-
-### Final Selected Model
-
-**Architecture:** ResNet50 (Fine-Tuned)
-
-### Training Results
-
-| Metric              |                    Value |
-| ------------------- | -----------------------: |
-| Training Accuracy   | *(Add your final value)* |
-| Validation Accuracy | *(Add your final value)* |
-| Test Accuracy       | *(Add your final value)* |
-
----
-
-# 🔍 Inference Pipeline
-
-The deployed application performs the following steps during prediction:
-
-1. User uploads a dermoscopic skin lesion image.
-2. The image is resized to **224 × 224** pixels.
-3. ResNet50 preprocessing is applied.
-4. The fine-tuned ResNet50 model generates prediction probabilities.
-5. The class with the highest probability is selected.
-6. The application displays:
-
-   * Predicted disease
-   * Confidence score
-   * Top-3 predictions
-   * Probability distribution chart
-   * Disease description
-
----
-
-# 💡 Challenges Faced
-
-During development, several practical challenges were encountered:
-
-* Class imbalance in the HAM10000 dataset.
-* Lower performance of the initial custom CNN.
-* Performance degradation during EfficientNetB0 fine-tuning.
-* Hyperparameter experimentation for transfer learning.
-* Building a modular inference pipeline for deployment.
-* Integrating the trained model into a Streamlit application.
-
-Addressing these challenges helped improve both the final model and the deployment workflow.
-
-
 # 📂 Dataset
 
-**Dataset Name:** HAM10000 (Human Against Machine with 10,000 Training Images)
+## HAM10000 Dataset
 
-The HAM10000 dataset is a publicly available collection of dermoscopic skin lesion images widely used for skin disease classification research.
+**HAM10000 (Human Against Machine with 10,000 Training Images)** is a publicly available dataset containing dermoscopic images of pigmented skin lesions.
+
+The dataset is one of the most widely used benchmarks for skin lesion classification research.
 
 ### Number of Classes
 
-| Class Code | Disease Name         |
+| Class Code | Disease              |
 | ---------- | -------------------- |
 | akiec      | Actinic Keratoses    |
 | bcc        | Basal Cell Carcinoma |
@@ -196,35 +128,250 @@ The HAM10000 dataset is a publicly available collection of dermoscopic skin lesi
 
 ---
 
+## Dataset Characteristics
+
+* Total Images: **10,015**
+* Image Type: Dermoscopic Images
+* Number of Classes: **7**
+* Image Size (Original): **600 × 450**
+* Input Size (Model): **224 × 224**
+* Dataset Type: Multi-Class Image Classification
+
+---
+
+# 💻 Technology Stack
+
+| Category             | Technologies             |
+| -------------------- | ------------------------ |
+| Programming Language | Python                   |
+| Deep Learning        | TensorFlow, Keras        |
+| Transfer Learning    | ResNet50, EfficientNetB0, DesNet121 |
+| Computer Vision      | OpenCV                   |
+| Numerical Computing  | NumPy                    |
+| Data Visualization   | Matplotlib               |
+| Web Framework        | Streamlit                |
+| Version Control      | Git & GitHub             |
+
+---
+
+# 🎯 Project Objective
+
+The primary objective of this project is to develop an intelligent image classification system capable of identifying different categories of skin diseases using Deep Learning.
+
+Instead of selecting a pretrained model directly, multiple architectures were trained and compared. The best-performing model was then deployed into a user-friendly web application to simulate a real-world AI inference workflow.
+
+This project demonstrates the complete machine learning lifecycle including:
+
+* Data preprocessing
+* Model development
+* Transfer learning
+* Fine-tuning
+* Model evaluation
+* Inference pipeline
+* Web application deployment
+
+The project focuses not only on achieving good predictive performance but also on building a clean, modular, and production-ready AI application.
+
+---
+
+# 📊 Exploratory Data Analysis (EDA)
+
+Before training the deep learning models, an extensive Exploratory Data Analysis (EDA) was performed to better understand the dataset.
+
+The following analyses were carried out:
+
+* Class distribution analysis
+* Image resolution analysis
+* Pixel intensity distribution
+* Dataset imbalance visualization
+* Sample image visualization for each disease class
+
+### Key Observations
+
+* The dataset is **highly imbalanced**.
+* **Melanocytic Nevus (nv)** is the dominant class.
+* Some classes such as **Dermatofibroma (df)** and **Vascular Lesion (vasc)** contain significantly fewer samples.
+* All images have a consistent original resolution of **600 × 450** pixels, making preprocessing straightforward.
+
+Understanding these characteristics was important for selecting an appropriate training strategy.
+
+---
+
+# 🧹 Data Preprocessing
+
+A dedicated preprocessing pipeline was developed before model training.
+
+The preprocessing steps include:
+
+* Image loading using OpenCV
+* Conversion from BGR to RGB
+* Image resizing to **224 × 224**
+* Conversion to NumPy arrays
+* ResNet50 preprocessing
+* Label encoding
+* Train / Validation / Test split
+
+These preprocessing steps ensured that the data matched the input requirements of the pretrained ResNet50 architecture.
+
+---
+
+# 🧠 Model Development
+
+Instead of selecting a pretrained model directly, multiple deep learning architectures were trained and evaluated to identify the most suitable model.
+
+The project followed a progressive experimentation approach.
+
+---
+
+## Phase 1 — Custom CNN
+
+A Convolutional Neural Network was designed and trained from scratch.
+
+The objective of this model was to establish a baseline performance without using transfer learning.
+
+### Result
+
+* Successfully learned basic image features.
+* Provided a strong baseline for comparison.
+* Lower generalization compared to pretrained architectures.
+
+---
+
+## Phase 2 — EfficientNetB0
+
+EfficientNetB0 was trained using transfer learning.
+
+Initially, the pretrained backbone was frozen and only the classification head was trained.
+
+This significantly improved performance compared to the custom CNN.
+
+An additional fine-tuning experiment was conducted by unfreezing deeper layers.
+
+Although fine-tuning increased the model's capacity, validation performance became less stable. Therefore, this version was not selected for deployment.
+
+---
+
+## Phase 3 — ResNet50
+
+Finally, ResNet50 was selected for experimentation.
+
+The model was trained using transfer learning and later fine-tuned by unfreezing selected layers.
+
+Among all trained models, the fine-tuned ResNet50 achieved the best balance between accuracy, stability, and inference performance.
+
+This model was selected for deployment.
+
+---
+
+# 📈 Model Comparison
+
+| Model          | Training Strategy                   |                    Test Accuracy | Status        |
+| -------------- | ----------------------------------- | -------------------------------: | ------------- |
+| Custom CNN     | Built From Scratch                  |                       **60.55%** | Baseline      |
+| EfficientNetB0 | Feature Extraction                  |                       **72.06%** | Improved      |
+| EfficientNetB0 | Fine-Tuning                         | Validation performance decreased | Not Selected  |
+| **ResNet50**   | **Transfer Learning + Fine-Tuning** |                       **80.50%** | ✅ Final Model |
+
+---
+
+# 🏆 Why ResNet50?
+
+The final deployment model was selected after comparing multiple architectures.
+
+The decision was based on:
+
+* Higher classification accuracy
+* Better validation stability
+* Improved generalization
+* Reliable inference performance
+* Better balance between performance and deployment
+
+Rather than selecting the model with only the highest training accuracy, emphasis was placed on overall performance during evaluation and inference.
+
+---
+
+# 📊 Final Model Performance
+
+## Final Selected Model
+
+**Architecture:** Fine-Tuned ResNet50
+
+| Metric              |                            Value |
+| ------------------- | -------------------------------: |
+| Training Accuracy   |                       **90.03%** |
+| Validation Accuracy |                       **83.62%** |
+| Test Accuracy       |                       **80.50%** |
+
+---
+
+# 🔍 Inference Pipeline
+
+Once training was completed, the model was integrated into a dedicated inference pipeline.
+
+The prediction workflow is as follows:
+
+1. User uploads a skin lesion image.
+2. The image is resized to **224 × 224**.
+3. ResNet50 preprocessing is applied.
+4. The trained model predicts class probabilities.
+5. The most probable disease is selected.
+6. The application displays:
+
+   * Predicted disease
+   * Confidence score
+   * Top-3 predictions
+   * Disease description
+   * Probability distribution chart
+
+---
+
+# 💡 Challenges Faced
+
+During the development of this project, several practical challenges were encountered.
+
+Some of the major challenges included:
+
+* Highly imbalanced dataset
+* Lower performance of the initial Custom CNN
+* Fine-tuning instability in EfficientNetB0
+* Selecting the most suitable pretrained architecture
+* Building a modular inference pipeline
+* Integrating the trained model into a Streamlit application
+
+Addressing these challenges significantly improved both the final model and the deployment workflow.
+
+---
+
 # 📁 Project Structure
 
 ```text
 SkinDiseaseClassifier/
-
-│── app.py                     # Streamlit web application
-│── inference.py               # Model inference pipeline
-│── requirements.txt           # Project dependencies
-│── README.md                  # Project documentation
-│── .gitignore
-
+│
+├── app.py                           # Streamlit Web Application
+├── inference.py                     # Model Inference Pipeline
+├── requirements.txt                 # Project Dependencies
+├── README.md                        # Project Documentation
+├── .gitignore
+│
 ├── models/
-│     └── resnet50_finetuned_model.keras
-
+│   ├── README.md
+│   └── (Download the trained model here)
+│
 ├── utils/
-│     ├── preprocess.py
-│     └── mapping.py
-
+│   ├── preprocess.py                # Image Preprocessing Functions
+│   └── mapping.py                   # Class Labels & Disease Information
+│
 ├── sample_images/
-│     ├── sample1.jpg
-│     ├── sample2.jpg
-│     └── sample3.jpg
-
+│   ├── sample_1.jpg
+│   ├── sample_2.jpg
+│   └── sample_3.jpg
+│
 ├── results/
-│     ├── app_demo.png
-│     ├── confusion_matrix.png
-│     ├── model_comparison.png
-│     └── probability_chart.png
-
+│   ├── app_demo.png
+│   ├── prediction.png
+│   ├── probability_chart.png
+│   └── model_comparison.png
+│
 └── assets/
 ```
 
@@ -235,7 +382,7 @@ SkinDiseaseClassifier/
 Clone the repository
 
 ```bash
-git clone https://github.com/pal-deepaak/Skin_Cancer_Classifier.git
+git clone https://github.com/pal-deepaak/SkinDiseaseClassifier.git
 ```
 
 Move into the project directory
@@ -264,145 +411,288 @@ Activate the virtual environment
 source .venv/bin/activate
 ```
 
-Install all dependencies
+Install the required dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## 📥 Download Trained Model
+---
 
-The trained ResNet50 model is not included in this repository because it exceeds GitHub's maximum file size limit.
+# 📥 Download Trained Model
 
-Download the model from Google Drive and place it inside the **models** directory before running the application.
+The trained **ResNet50 Fine-Tuned** model is **not included** in this repository because its size exceeds GitHub's file size limit.
 
-**Google Drive Link**
+Download the model using the link below:
 
-https://drive.google.com/file/d/1CJSsHiNOnXQl-kmLfROGHfxXXBe6jUD3/view?usp=drive_link
+**Google Drive**
 
-Folder structure:
+```
+https://drive.google.com/file/d/1CJSsHiNOnXQl-kmLfROGHfxXXBe6jUD3/view?usp=sharing
+```
+
+After downloading, place the model inside the **models** folder.
 
 ```text
 models/
 └── resnet50_finetuned_model.keras
 ```
 
-
 ---
 
-# ▶️ Run the Application
+# ▶️ Running the Application
 
-Start the Streamlit application
+Launch the Streamlit application
 
 ```bash
 streamlit run app.py
 ```
 
-The application will automatically open in your default browser.
+The application will automatically open in your default web browser.
 
 ---
 
-# 📷 Application Screenshots
+# 🚀 Application Workflow
 
-## Home Page
-
-![Home Page](result/uploadImg.png)
-
-Example:
+The deployed application follows the workflow below.
 
 ```text
-results/app_demo.png
+Upload Image
+      │
+      ▼
+Image Preprocessing
+      │
+      ▼
+ResNet50 Prediction
+      │
+      ▼
+Probability Calculation
+      │
+      ▼
+Top-3 Predictions
+      │
+      ▼
+Disease Description
+      │
+      ▼
+Prediction Probability Chart
 ```
 
 ---
 
-## Prediction Output
-![Prediction Output](result/prediction.png)
+# 📸 Application Screenshots
+
+## 🏠 Home Page
+
+> Replace the image below with your own screenshot.
+
+```markdown
+![Home Page](result/uploadImg.png)
+```
 
 ---
 
-## Probability Distribution
+## 🔍 Prediction Result
 
-*(Insert screenshot here)*
+```markdown
+![Prediction](result/prediction.png)
+```
 
 ---
 
-## Model Comparison
+## 📊 Prediction Probability
 
-Test Accuracy
+```markdown
+![Probability Chart](result/probability.png)
+```
 
-Custom CNN         ████████████ 60.55%
 
-EfficientNetB0     ████████████████ 72.06%
+```
 
-ResNet50           ██████████████████ 80.50
+---
+
+# 🎯 Features of the Web Application
+
+The Streamlit application provides the following features:
+
+* Upload skin lesion images
+* Real-time disease prediction
+* Prediction confidence score
+* Top-3 predicted diseases
+* Disease description
+* Probability visualization
+* Clean and responsive interface
+* Educational medical disclaimer
 
 ---
 
 # 🧪 Sample Prediction Workflow
 
 1. Upload a dermoscopic skin lesion image.
-2. Click **Predict Disease**.
-3. The AI model analyzes the uploaded image.
-4. The predicted disease is displayed.
-5. Confidence score is shown.
-6. Top-3 predictions are displayed.
-7. Probability distribution chart is generated.
+2. Click **Predict**.
+3. The image is preprocessed automatically.
+4. The trained ResNet50 model performs inference.
+5. The predicted disease is displayed.
+6. Confidence score is calculated.
+7. Top-3 predictions are shown.
 8. Disease description is displayed.
-9. Read the medical disclaimer.
+9. Prediction probability graph is generated.
 
-🚀 Future Improvements
+---
 
-This project can be further enhanced with several advanced features:
+# 🛠 Technologies Used
 
-Grad-CAM visualization for explainable AI
-Multi-model ensemble learning
-Confidence calibration
-Docker containerization
-Cloud deployment (AWS / Azure / GCP)
-REST API using FastAPI
-User authentication
-PDF report generation
-Multi-language support
+| Category             | Technology         |
+| -------------------- | ------------------ |
+| Programming Language | Python             |
+| Deep Learning        | TensorFlow, Keras  |
+| Transfer Learning    | ResNet50           |
+| Computer Vision      | OpenCV             |
+| Numerical Computing  | NumPy              |
+| Visualization        | Matplotlib         |
+| Web Framework        | Streamlit          |
+| Version Control      | Git & GitHub       |
+| IDE                  | Visual Studio Code |
 
-⚠️ Medical Disclaimer
+---
 
-This project is developed solely for educational and research purposes.
+# 🚀 Future Improvements
 
-The predictions generated by this application should NOT be considered a substitute for professional medical diagnosis or treatment.
+Although the current system provides reliable skin disease classification, there are several enhancements that can further improve the project.
 
-Always consult a qualified dermatologist or healthcare professional before making any medical decisions.
+### Explainable AI
 
-🤝 Acknowledgements
+* Implement Grad-CAM visualization to highlight the regions influencing the model's prediction.
+* Improve model interpretability for better understanding of AI decisions.
+
+### Model Improvements
+
+* Experiment with Vision Transformers (ViT)
+* Explore ConvNeXt architectures
+* Train larger EfficientNet variants
+* Apply Ensemble Learning
+* Perform Hyperparameter Optimization
+
+### Deployment Improvements
+
+* Deploy the application on Streamlit Community Cloud
+* Containerize the application using Docker
+* Deploy REST API using FastAPI
+* Add Hugging Face model hosting
+* Improve inference speed
+
+### User Experience
+
+* Drag-and-drop image upload
+* Mobile responsive interface
+* Dark mode support
+* Multi-language support
+* Downloadable prediction reports
+
+---
+
+# ⚠️ Medical Disclaimer
+
+> **Important Notice**
+
+This application has been developed **only for educational and research purposes**.
+
+The predictions generated by this AI model **must not** be considered a substitute for professional medical diagnosis or treatment.
+
+Always consult a qualified dermatologist or healthcare professional before making any medical decision.
+
+---
+
+# 🤝 Acknowledgements
+
+This project would not have been possible without the amazing open-source community.
 
 Special thanks to:
 
-TensorFlow
-Keras
-Streamlit
-OpenCV
-NumPy
-Matplotlib
-HAM10000 Dataset Authors
+* TensorFlow
+* Keras
+* Streamlit
+* OpenCV
+* NumPy
+* Matplotlib
+* Scikit-learn
+* HAM10000 Dataset Authors
 
-Their excellent open-source contributions made this project possible.
+---
 
-📚 References
-HAM10000 Dataset
-TensorFlow Documentation
-Keras Documentation
-Streamlit Documentation
-ResNet50 Research Paper
-👨‍💻 Developer
+# 📚 References
 
-Deepak Kumar
+### Dataset
+
+* HAM10000 Dataset
+
+### Research
+
+* Deep Residual Learning for Image Recognition (ResNet)
+
+
+# 📊 Project Summary
+
+| Category          | Details                      |
+| ----------------- | ---------------------------- |
+| Project Type      | Deep Learning                |
+| Domain            | Medical Image Classification |
+| Dataset           | HAM10000                     |
+| Number of Classes | 7                            |
+| Final Model       | Fine-Tuned ResNet50          |
+| Test Accuracy     | **80.50%**                   |
+| Framework         | TensorFlow / Keras           |
+| Deployment        | Streamlit                    |
+| Language          | Python                       |
+
+---
+
+# 💡 Key Learnings
+
+This project helped strengthen my understanding of:
+
+* Image preprocessing
+* Data preprocessing pipelines
+* Convolutional Neural Networks
+* Transfer Learning
+* Fine-Tuning
+* Model Evaluation
+* Deep Learning deployment
+* Streamlit application development
+* Git & GitHub workflow
+* End-to-End AI project development
+
+---
+
+# 👨‍💻 Developer
+
+## Deepak Kumar
 
 BCA Graduate
 
 Aspiring AI / Machine Learning Engineer
 
-⭐ Support
+### Connect with Me
 
-If you found this project helpful, consider giving this repository a ⭐ on GitHub.#   S k i n _ C a n c e r _ C l a s s i f i e r 
- 
- 
+* GitHub: https://github.com/pal-deepaak
+
+* LinkedIn : https://www.linkedin.com/in/deepak-pal-00a451236/
+
+
+# ⭐ Support
+
+If you found this project useful, please consider giving it a **⭐ Star** on GitHub.
+
+It helps increase the visibility of the project and motivates further improvements.
+
+---
+
+<div align="center">
+
+## ⭐ Thank You for Visiting ⭐
+
+If you have any suggestions or feedback, feel free to open an Issue or contribute to the project.
+
+Happy Coding! 🚀
+
+</div>
