@@ -484,8 +484,6 @@ Prediction Probability Chart
 
 ## 🏠 Home Page
 
-> Replace the image below with your own screenshot.
-
 ```markdown
 ![Home Page](result/uploadImg.png)
 ```
