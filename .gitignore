@@ -1,0 +1,14 @@
+venv/
+.venv/
+
+models/resnet50_finetuned_model.keras
+
+__pycache__/
+*.pyc
+
+.ipynb_checkpoints/
+
+.vscode/
+
+temp.jpg
+temp.png

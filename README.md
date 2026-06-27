@@ -270,6 +270,24 @@ Install all dependencies
 pip install -r requirements.txt
 ```
 
+## 📥 Download Trained Model
+
+The trained ResNet50 model is not included in this repository because it exceeds GitHub's maximum file size limit.
+
+Download the model from Google Drive and place it inside the **models** directory before running the application.
+
+**Google Drive Link**
+
+https://drive.google.com/file/d/1CJSsHiNOnXQl-kmLfROGHfxXXBe6jUD3/view?usp=drive_link
+
+Folder structure:
+
+```text
+models/
+└── resnet50_finetuned_model.keras
+```
+
+
 ---
 
 # ▶️ Run the Application
@@ -385,5 +403,6 @@ Aspiring AI / Machine Learning Engineer
 
 ⭐ Support
 
-If you found this project helpful, consider giving this repository a ⭐ on GitHub.#   S k i n _ C a n c e r _ C l a s s i f i e r  
+If you found this project helpful, consider giving this repository a ⭐ on GitHub.#   S k i n _ C a n c e r _ C l a s s i f i e r 
+ 
  

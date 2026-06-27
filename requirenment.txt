@@ -1,0 +1,9 @@
+The packages that i used in these project : 
+tensorflow>=2.19.0
+streamlit
+opencv-python
+numpy
+matplotlib
+pandas
+Pillow
+scikit-learn
